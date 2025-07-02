@@ -1,0 +1,99 @@
+@page "/organizations"
+@using System.Net.Http.Json
+@inject HttpClient Http
+@using LawFirm.SuperAdminPortal.Components
+
+<h3>Organizations</h3>
+
+@if (IsLoading)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var org in OrganizationList)
+            {
+                <tr>
+                    <td>@org.Name</td>
+                    <td>@org.CreatedAt.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" @onclick="() => Edit(org)">Edit</button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => Delete(org.Id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>@(EditingOrg.Id == 0 ? "Add Organization" : "Edit Organization")</h4>
+    <EditForm Model="EditingOrg" OnValidSubmit="Save">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="mb-3">
+            <label>Name</label>
+            <InputText @bind-Value="EditingOrg.Name" class="form-control" />
+        </div>
+        <button class="btn btn-success" type="submit">Save</button>
+        @if (EditingOrg.Id != 0)
+        {
+            <button class="btn btn-secondary ms-2" type="button" @onclick="CancelEdit">Cancel</button>
+        }
+    </EditForm>
+}
+
+@code {
+    private List<OrganizationDto> OrganizationList = new();
+    private OrganizationDto EditingOrg = new();
+    private bool IsLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadOrganizations();
+    }
+
+    private async Task LoadOrganizations()
+    {
+        IsLoading = true;
+        OrganizationList = await Http.GetFromJsonAsync<List<OrganizationDto>>("/organizations") ?? new();
+        IsLoading = false;
+    }
+
+    private void Edit(OrganizationDto org)
+    {
+        EditingOrg = new OrganizationDto { Id = org.Id, Name = org.Name };
+    }
+
+    private void CancelEdit()
+    {
+        EditingOrg = new OrganizationDto();
+    }
+
+    private async Task Save()
+    {
+        if (EditingOrg.Id == 0)
+        {
+            await Http.PostAsJsonAsync("/organizations", new { Name = EditingOrg.Name });
+        }
+        else
+        {
+            await Http.PutAsJsonAsync($"/organizations/{EditingOrg.Id}", new { Name = EditingOrg.Name });
+        }
+        await LoadOrganizations();
+        CancelEdit();
+    }
+
+    private async Task Delete(int id)
+    {
+        await Http.DeleteAsync($"/organizations/{id}");
+        await LoadOrganizations();
+    }
+} 

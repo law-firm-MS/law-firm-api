@@ -1,0 +1,34 @@
+@using LawFirm.Application.Modules.Users.Dto
+
+@code {
+    private List<UserDto> userList = new();
+    private UserDto? EditingUser;
+    private async Task Edit(UserDto user) { EditingUser = user; }
+    private async Task PromoteToOrgAdmin(UserDto user) { /* logic here */ }
+    private async Task DemoteFromOrgAdmin(UserDto user) { /* logic here */ }
+}
+
+<tbody>
+    @foreach (var user in userList)
+    {
+        <tr>
+            <td>@user.FirstName @user.LastName</td>
+            <td>
+                <button class="btn btn-sm btn-primary" @onclick="() => Edit(user)">Edit</button>
+                @if (user.Role != "OrgAdmin")
+                {
+                    <button class="btn btn-sm btn-warning ms-2" @onclick="() => PromoteToOrgAdmin(user)">Promote to OrgAdmin</button>
+                }
+                @if (user.Role == "OrgAdmin")
+                {
+                    <button class="btn btn-sm btn-secondary ms-2" @onclick="() => DemoteFromOrgAdmin(user)">Demote from OrgAdmin</button>
+                }
+            </td>
+        </tr>
+    }
+</tbody>
+
+    private async Task LoadUsers()
+    {
+        // Add your user loading logic here
+    } 

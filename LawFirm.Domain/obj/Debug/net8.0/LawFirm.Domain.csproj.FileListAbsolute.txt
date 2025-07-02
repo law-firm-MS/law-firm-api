@@ -1,0 +1,12 @@
+C:\wamp64\www\law-firm-api\LawFirm.Domain\bin\Debug\net8.0\LawFirm.Domain.deps.json
+C:\wamp64\www\law-firm-api\LawFirm.Domain\bin\Debug\net8.0\LawFirm.Domain.dll
+C:\wamp64\www\law-firm-api\LawFirm.Domain\bin\Debug\net8.0\LawFirm.Domain.pdb
+C:\wamp64\www\law-firm-api\LawFirm.Domain\obj\Debug\net8.0\LawFirm.Domain.csproj.AssemblyReference.cache
+C:\wamp64\www\law-firm-api\LawFirm.Domain\obj\Debug\net8.0\LawFirm.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\wamp64\www\law-firm-api\LawFirm.Domain\obj\Debug\net8.0\LawFirm.Domain.AssemblyInfoInputs.cache
+C:\wamp64\www\law-firm-api\LawFirm.Domain\obj\Debug\net8.0\LawFirm.Domain.AssemblyInfo.cs
+C:\wamp64\www\law-firm-api\LawFirm.Domain\obj\Debug\net8.0\LawFirm.Domain.csproj.CoreCompileInputs.cache
+C:\wamp64\www\law-firm-api\LawFirm.Domain\obj\Debug\net8.0\LawFirm.Domain.dll
+C:\wamp64\www\law-firm-api\LawFirm.Domain\obj\Debug\net8.0\refint\LawFirm.Domain.dll
+C:\wamp64\www\law-firm-api\LawFirm.Domain\obj\Debug\net8.0\LawFirm.Domain.pdb
+C:\wamp64\www\law-firm-api\LawFirm.Domain\obj\Debug\net8.0\ref\LawFirm.Domain.dll

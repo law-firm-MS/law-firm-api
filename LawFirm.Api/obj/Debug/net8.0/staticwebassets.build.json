@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "huKyOMknk2Wz5cSwvodFuPF23LvGUxGwfOrTKleDMWw=",
+  "Source": "LawFirm.Api",
+  "BasePath": "_content/LawFirm.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

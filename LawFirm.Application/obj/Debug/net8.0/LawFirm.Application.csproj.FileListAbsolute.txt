@@ -1,0 +1,15 @@
+C:\wamp64\www\law-firm-api\LawFirm.Application\bin\Debug\net8.0\LawFirm.Application.deps.json
+C:\wamp64\www\law-firm-api\LawFirm.Application\bin\Debug\net8.0\LawFirm.Application.dll
+C:\wamp64\www\law-firm-api\LawFirm.Application\bin\Debug\net8.0\LawFirm.Application.pdb
+C:\wamp64\www\law-firm-api\LawFirm.Application\bin\Debug\net8.0\LawFirm.Domain.dll
+C:\wamp64\www\law-firm-api\LawFirm.Application\bin\Debug\net8.0\LawFirm.Domain.pdb
+C:\wamp64\www\law-firm-api\LawFirm.Application\obj\Debug\net8.0\LawFirm.Application.csproj.AssemblyReference.cache
+C:\wamp64\www\law-firm-api\LawFirm.Application\obj\Debug\net8.0\LawFirm.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\wamp64\www\law-firm-api\LawFirm.Application\obj\Debug\net8.0\LawFirm.Application.AssemblyInfoInputs.cache
+C:\wamp64\www\law-firm-api\LawFirm.Application\obj\Debug\net8.0\LawFirm.Application.AssemblyInfo.cs
+C:\wamp64\www\law-firm-api\LawFirm.Application\obj\Debug\net8.0\LawFirm.Application.csproj.CoreCompileInputs.cache
+C:\wamp64\www\law-firm-api\LawFirm.Application\obj\Debug\net8.0\LawFirm..FD618170.Up2Date
+C:\wamp64\www\law-firm-api\LawFirm.Application\obj\Debug\net8.0\LawFirm.Application.dll
+C:\wamp64\www\law-firm-api\LawFirm.Application\obj\Debug\net8.0\refint\LawFirm.Application.dll
+C:\wamp64\www\law-firm-api\LawFirm.Application\obj\Debug\net8.0\LawFirm.Application.pdb
+C:\wamp64\www\law-firm-api\LawFirm.Application\obj\Debug\net8.0\ref\LawFirm.Application.dll

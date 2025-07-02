@@ -1,0 +1,41 @@
+using LawFirm.Application.DTOs;
+using LawFirm.Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+
+namespace LawFirm.Api.Controllers
+{
+    [ApiController]
+    [Route("api")]
+    public class AuthController : ControllerBase
+    {
+        private readonly IAuthService _authService;
+
+        public AuthController(IAuthService authService)
+        {
+            _authService = authService;
+        }
+
+        [HttpPost("clients/register")]
+        public async Task<IActionResult> RegisterClient([FromBody] RegisterClientDto dto)
+        {
+            try
+            {
+                var result = await _authService.RegisterClientAsync(dto);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
+        [HttpPost("auth/login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto dto)
+        {
+            var result = await _authService.LoginAsync(dto);
+            if (result == null)
+                return Unauthorized(new { error = "Invalid credentials" });
+            return Ok(result);
+        }
+    }
+}

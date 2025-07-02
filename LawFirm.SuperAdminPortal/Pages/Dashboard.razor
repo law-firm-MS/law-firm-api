@@ -1,0 +1,104 @@
+@page "/dashboard"
+@using System.Net.Http.Json
+@inject HttpClient Http
+
+<h3>Super Admin Dashboard</h3>
+
+@if (IsLoading)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="row mb-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Organizations</h5>
+                    <p class="card-text">@Stats.TotalOrganizations</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Users</h5>
+                    <p class="card-text">@Stats.TotalUsers</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Cases</h5>
+                    <p class="card-text">@Stats.TotalCases</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4>System Health</h4>
+    <p>Status: <b>@HealthStatus</b></p>
+    <h4>Recent Audit Logs</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>User</th>
+                <th>Action</th>
+                <th>Entity</th>
+                <th>EntityId</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var log in AuditLogs)
+            {
+                <tr>
+                    <td>@log.Timestamp.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@log.UserId</td>
+                    <td>@log.Action</td>
+                    <td>@log.Entity</td>
+                    <td>@log.EntityId</td>
+                    <td>@log.Details</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private bool IsLoading = true;
+    private DashboardStats Stats = new();
+    private string HealthStatus = "Unknown";
+    private List<AuditLogDto> AuditLogs = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        IsLoading = true;
+        Stats = await Http.GetFromJsonAsync<DashboardStats>("/api/reporting/dashboard") ?? new();
+        HealthStatus = (await Http.GetStringAsync("/health")).Contains("Healthy") ? "Healthy" : "Unhealthy";
+        var auditResult = await Http.GetFromJsonAsync<AuditLogResult>("/audit-logs?page=1&pageSize=10");
+        AuditLogs = auditResult?.Items ?? new();
+        IsLoading = false;
+    }
+
+    public class DashboardStats
+    {
+        public int TotalOrganizations { get; set; }
+        public int TotalUsers { get; set; }
+        public int TotalCases { get; set; }
+    }
+    public class AuditLogDto
+    {
+        public DateTime Timestamp { get; set; }
+        public string UserId { get; set; } = string.Empty;
+        public string Action { get; set; } = string.Empty;
+        public string Entity { get; set; } = string.Empty;
+        public string EntityId { get; set; } = string.Empty;
+        public string? Details { get; set; }
+    }
+    public class AuditLogResult
+    {
+        public List<AuditLogDto> Items { get; set; } = new();
+    }
+} 
